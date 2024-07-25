@@ -54,8 +54,6 @@ jobs:
             changelog: ${{ inputs.changelog }}
 
         - name: Commit & Push
-          env:
-            GH_TOKEN: ${{ github.token }}
           run: |
             git config --local user.email "sysadmin+githubactions@athom.com"
             git config --local user.name "Homey Github Actions Bot"
