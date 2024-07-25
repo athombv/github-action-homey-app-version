@@ -46,13 +46,14 @@ jobs:
       steps:
         - uses: actions/checkout@v3
         
-        - name: Update Homey App Version
+        - name: Update App Version
           uses: athombv/github-action-homey-app-version@master
+          id: update_app_version
           with:
-            version: ${{ github.event.inputs.version }}
-            changelog: ${{ github.event.inputs.changelog }}
+            version: ${{ inputs.version }}
+            changelog: ${{ inputs.changelog }}
 
-        - name: Commit, Push & Create Pull Request
+        - name: Commit & Push
           env:
             GH_TOKEN: ${{ github.token }}
           run: |
@@ -60,8 +61,8 @@ jobs:
             git config --local user.name "Homey Github Actions Bot"
 
             git add -A
-            git commit -m "Update Homey App Version to v${{ steps.bump.outputs.app_version }}"
-            git tag "v${{ steps.bump.outputs.app_version }}"
+            git commit -m "Update Homey App Version to v${{ steps.update_app_version.outputs.version }}"
+            git tag "v${{ steps.update_app_version.outputs.version }}"
 
             git push origin HEAD --tags
 ```
