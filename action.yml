@@ -1,0 +1,16 @@
+# action.yml
+name: 'Homey App — Update Version'
+description: "Update a Homey app's version"
+inputs:
+  version:
+    description: 'Version. Can be either major, minor, patch, or a semver version.'
+    required: true
+  changelog:
+    description: 'Changelog of the new version in English.'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.version }}
+    - ${{ inputs.changelog }}
