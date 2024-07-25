@@ -8,6 +8,9 @@ inputs:
   changelog:
     description: 'Changelog of the new version in English.'
     required: true
+outputs:
+  version:
+    description: 'The new version'
 runs:
   using: 'docker'
   image: 'Dockerfile'

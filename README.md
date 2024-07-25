@@ -8,6 +8,12 @@ This GitHub Action will update the version of the current Homey app.
 
 Version. Can be either `major`, `minor`, `patch`, or a semver version.
 
+## Outputs
+
+## version
+
+The new version in SemVer format.
+
 ## changelog
 
 Changelog of the new version in English.
@@ -56,6 +62,6 @@ jobs:
             git add -A
             git commit -m "Update Homey App Version to v${{ steps.bump.outputs.app_version }}"
             git tag "v${{ steps.bump.outputs.app_version }}"
-            
+
             git push origin HEAD --tags
 ```
