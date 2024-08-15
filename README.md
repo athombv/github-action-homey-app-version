@@ -21,7 +21,7 @@ Changelog of the new version in English.
 ## Example usage
 
 ```name: Update Homey App Version
-
+name: Update Homey App Version
 on:
   workflow_dispatch:
     inputs:
@@ -41,12 +41,12 @@ on:
 
 jobs:  
     main:
-      name: Update App Version
+      name: Update Homey App Version
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v3
+        - uses: actions/checkout@v4
         
-        - name: Update App Version
+        - name: Update Homey App Version
           uses: athombv/github-action-homey-app-version@master
           id: update_app_version
           with:
@@ -55,8 +55,8 @@ jobs:
 
         - name: Commit & Push
           run: |
-            git config --local user.email "sysadmin+githubactions@athom.com"
-            git config --local user.name "Homey Github Actions Bot"
+            git config --local user.name "github-actions[bot]"
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
             git add -A
             git commit -m "Update Homey App Version to v${{ steps.update_app_version.outputs.version }}"
