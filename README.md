@@ -39,13 +39,17 @@ on:
         description: Changelog
         required: true
 
-jobs:  
+# Needed in order to push the commit and create a release
+permissions:
+  contents: write
+
+jobs:
     main:
       name: Update Homey App Version
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v4
-        
+
         - name: Update Homey App Version
           uses: athombv/github-action-homey-app-version@master
           id: update_app_version
@@ -63,4 +67,8 @@ jobs:
             git tag "v${{ steps.update_app_version.outputs.version }}"
 
             git push origin HEAD --tags
+            gh release create "v${{ steps.update_app_version.outputs.version }}" -t "v${{ steps.update_app_version.outputs.version }}" --notes "" --generate-notes
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GH_TOKEN: ${{ github.token }}
 ```
