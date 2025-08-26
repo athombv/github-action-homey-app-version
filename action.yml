@@ -8,12 +8,41 @@ inputs:
   changelog:
     description: 'Changelog of the new version in English.'
     required: false
+  # Language-specific changelogs - most common ones defined for IDE support
+  # Note: ALL 200+ ISO 639-1 language codes are supported via changelog_{code}
+  changelog_en:
+    description: 'Changelog in English'
+    required: false
+  changelog_no:
+    description: 'Changelog in Norwegian'
+    required: false
+  changelog_sv:
+    description: 'Changelog in Swedish'
+    required: false
+  changelog_da:
+    description: 'Changelog in Danish'
+    required: false
+  changelog_de:
+    description: 'Changelog in German'
+    required: false
+  changelog_fr:
+    description: 'Changelog in French'
+    required: false
+  changelog_es:
+    description: 'Changelog in Spanish'
+    required: false
+  changelog_it:
+    description: 'Changelog in Italian'
+    required: false
+  changelog_pt:
+    description: 'Changelog in Portuguese'
+    required: false
+  changelog_nl:
+    description: 'Changelog in Dutch'
+    required: false
 outputs:
   version:
     description: 'The new version'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.version }}
-    - ${{ inputs.changelog }}
